@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WoW Character Toys</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">World of Warcraft Character Toys</h1>
+        
+        <form method="post" action="/" class="mt-4">
+            <div class="form-group">
+                <label for="character_name" class="form-label">Character Name:</label>
+                <input type="text" id="character_name" name="character_name" class="form-control" value="{{ character_name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="realm_slug" class="form-label">Realm Slug:</label>
+                <input type="text" id="realm_slug" name="realm_slug" class="form-control" value="{{ realm_slug }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Fetch Data</button>            
+        </form>
+        
+        {% if acquired_toys or missing_toys %}
+            <div class="mt-5">
+                <h3>Total toys ingame: {{ acquired_toys | length + missing_toys | length}}</h3>
+
+                <div class="progress mt-3" style="height: 40px;">
+                    <div 
+                        class="progress-bar progress-bar-green text-dark font-weight-bold" 
+                        role="progressbar" 
+                        style="width: {{ (acquired_toys | length) / (acquired_toys | length + missing_toys | length) * 100 }}%" 
+                        aria-valuenow="{{ (acquired_toys | length) / (acquired_toys | length + missing_toys | length) * 100 }}" 
+                        aria-valuemin="0" 
+                        aria-valuemax="100"
+                    >
+                        <h4>Acquired Toys ({{ acquired_toys | length }})</h4>
+                    </div>
+                    <div class="progress-bar progress-bar-red text-dark font-weight-bold" role="progressbar" style="width: {{ (missing_toys | length) / (acquired_toys | length + missing_toys | length) * 100 }}%" aria-valuenow="{{ (missing_toys | length) / (acquired_toys | length + missing_toys | length) * 100 }}" aria-valuemin="0" aria-valuemax="100">
+                        <h4>Missing Toys ({{ missing_toys | length }})</h4>
+                    </div>
+                </div>
+                <div style="padding-top: 20px;">
+                    <a 
+                        href="{{ url_for('give_task') }}" 
+                        class="btn btn-secondary ml-2"                        
+                    >Give Task</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

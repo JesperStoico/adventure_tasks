@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Morpheus';
+    src: url('../static/fonts/morpheus.woff2') format('woff2'),
+         url('../static/fonts/morpheus.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    background-color: #0f0f0f;
+    color: #f0f0f0;
+    font-family: 'Morpheus', sans-serif;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1, h2 {
+    color: #ffcc00;
+}
+
+.progress-bar-green {
+    background-color: #00ff00;
+}
+
+.progress-bar-red {
+    background-color: #ff0000;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-label {
+    color: #f0f0f0;
+}
+
+.quality[data-quality="Uncommon"] {
+    color: grey;
+}
+.quality[data-quality="Common"] {
+    color: green;
+}
+.quality[data-quality="Rare"] {
+    color: blue;
+}
+.quality[data-quality="Epic"] {
+    color: purple;
+}
+.quality[data-quality="Legendary"] {
+    color: orange;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img-fluid {
+    width: 150px; /* Adjust this value to make the image 4 times bigger */
+    height: auto;
+}
+.content {
+    display: flex;
+    align-items: center;
+}
+.content img {
+    margin-right: 20px;
+    border: solid 1px black; /* Space between the image and text */
+}
+.text-left {
+    text-align: left;
+}
